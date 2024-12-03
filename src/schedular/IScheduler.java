@@ -8,7 +8,7 @@ public interface IScheduler {
 
     void run();
     void setContextSwitch(int contextSwitch);
-    void setSchedularName(String schedularName);
     void setSchedularType(String schedularType);
     void setSchedularTime(int schedularTime);
+
 }

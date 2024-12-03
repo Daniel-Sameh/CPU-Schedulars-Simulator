@@ -23,11 +23,6 @@ public class FcaiScheduler implements IScheduler {
     }
 
     @Override
-    public void setSchedularName(String schedularName) {
-
-    }
-
-    @Override
     public void setSchedularType(String schedularType) {
 
     }
