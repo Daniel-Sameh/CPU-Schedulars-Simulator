@@ -72,12 +72,4 @@ public class PriorityScheduler implements IScheduler{
         this.contextSwitch = contextSwitch;
         System.out.println("Setting context switch to " + contextSwitch);
     }
-    @Override
-    public void setSchedularType(String schedularType) {
-        System.out.println("Setting schedular type to " + schedularType);
-    }
-    @Override
-    public void setSchedularTime(int schedularTime) {
-        System.out.println("Setting schedular time to " + schedularTime);
-    }
 }

@@ -19,16 +19,6 @@ public class FcaiScheduler implements IScheduler {
 
     @Override
     public void setContextSwitch(int contextSwitch) {
-
-    }
-
-    @Override
-    public void setSchedularType(String schedularType) {
-
-    }
-
-    @Override
-    public void setSchedularTime(int schedularTime) {
-
+        
     }
 }
