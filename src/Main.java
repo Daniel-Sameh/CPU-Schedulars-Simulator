@@ -32,8 +32,8 @@ public class Main {
         // Input Panel for Process Attributes
         JPanel inputPanel = new JPanel(new GridLayout(5, 2));
         JTextField processIdField = new JTextField();
-        JTextField priorityField = new JTextField();
         JTextField burstTimeField = new JTextField();
+        JTextField priorityField = new JTextField();
         JTextField arrivalTimeField = new JTextField();
         JButton addProcessButton = new JButton("Add Process");
 
@@ -98,7 +98,7 @@ public class Main {
                 int arrivalTime = Integer.parseInt(arrivalTimeField.getText());
 
                 // Create a new Process and add it to the table
-                Process process = new PriorityProcess(pid, priority, burstTime, arrivalTime);
+                Process process = new PriorityProcess(pid, arrivalTime, burstTime, priority);
                 processes.add(process);
                 tableModel.addRow(new Object[]{pid, priority, burstTime, arrivalTime});
 

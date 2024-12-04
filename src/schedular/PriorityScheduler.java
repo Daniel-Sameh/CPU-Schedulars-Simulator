@@ -9,9 +9,13 @@ public class PriorityScheduler implements IScheduler{
     private ArrayList<Process> readyQueue;
     private int currentTime;
     private int contextSwitch;
+    private float averageWaitingTime;
+    private float averageTurnaroundTime;
     public PriorityScheduler(ArrayList<Process> processes) {
         this.processes = processes;
         this.currentTime = 0;
+        this.averageWaitingTime = 0;
+        this.averageTurnaroundTime = 0;
         this.readyQueue = new ArrayList<>();
     }
     @Override
@@ -21,6 +25,7 @@ public class PriorityScheduler implements IScheduler{
     @Override
     public void run() {
         System.out.println("Running Priority Scheduler");
+        int processCount = processes.size();
         while (!processes.isEmpty()){
             System.out.println("Current Time: " + currentTime);
             Boolean ok = false;
@@ -32,13 +37,18 @@ public class PriorityScheduler implements IScheduler{
                     iterator.remove();
                 }
             }
-            readyQueue.sort((p1, p2) -> Integer.compare(p1.getPriority(), p2.getPriority()));
+            readyQueue.sort((p1, p2) -> Integer.compare(p1.getPriority(),p2.getPriority()));
             Iterator<Process> iterator1 = readyQueue.iterator();
             while (iterator1.hasNext()){
                 Process process = iterator1.next();
                 if (process.getArrivalTime() <= currentTime){
-                    currentTime += process.getBurstTime();
                     process.run();
+                    System.out.println("Waiting Time= "+(currentTime));
+                    System.out.println("Turnaround Time= "+(currentTime+process.getBurstTime()));
+                    averageWaitingTime += currentTime;
+                    averageTurnaroundTime += currentTime + process.getBurstTime();
+                    currentTime += process.getBurstTime();
+                    System.out.println("Priority process with pid " + process.getPid() +" Completed");
                     currentTime += contextSwitch;
                     ok = true;
                 }else{
@@ -52,6 +62,10 @@ public class PriorityScheduler implements IScheduler{
             }else ok = false;
 
         }
+        averageWaitingTime /= processCount;
+        averageTurnaroundTime /= processCount;
+        System.out.println("Average Waiting Time: " + averageWaitingTime);
+        System.out.println("Average Turnaround Time: " + averageTurnaroundTime);
     }
     @Override
     public void setContextSwitch(int contextSwitch) {

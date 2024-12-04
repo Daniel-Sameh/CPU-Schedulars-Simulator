@@ -6,6 +6,6 @@ public class PriorityProcess extends Process {
     }
     @Override
     public void run() {
-        System.out.println("Priority process with pid " + pid+" Completed");
+        System.out.println("Process with pid " + pid + " is running");
     }
 }
