@@ -7,7 +7,8 @@ public class FcaiProcess extends Process{
         this.quantum = quantum;
     }
     @Override
-    public void run() {
+    public void run(int startTime, int endTime) {
+        addRunTime(startTime, endTime);
         System.out.println("Running FCAI Process with pid " + pid);
     }
 
