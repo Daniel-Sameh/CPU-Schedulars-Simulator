@@ -42,7 +42,7 @@ public class PriorityScheduler implements IScheduler{
             while (iterator1.hasNext()){
                 Process process = iterator1.next();
                 if (process.getArrivalTime() <= currentTime){
-                    process.run();
+                    process.run(currentTime, currentTime + process.getBurstTime());
                     System.out.println("Waiting Time= "+(currentTime));
                     System.out.println("Turnaround Time= "+(currentTime+process.getBurstTime()));
                     averageWaitingTime += currentTime;

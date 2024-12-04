@@ -5,7 +5,8 @@ public class PriorityProcess extends Process {
         super(pid, arrivalTime, burstTime, priority);
     }
     @Override
-    public void run() {
+    public void run(int startTime, int endTime) {
+        addRunTime(startTime, endTime);
         System.out.println("Process with pid " + pid + " is running");
     }
 }
