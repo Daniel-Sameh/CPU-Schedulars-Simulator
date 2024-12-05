@@ -1,7 +1,9 @@
-package OSCourse.CPU;
+package OSCourse.CPU.Scheduler;
 
 import java.util.ArrayList;
 import java.util.Queue;
+
+import OSCourse.CPU.Process.Process;
 
 public abstract class Scheduler {
     protected ArrayList<Process> processes;
@@ -18,7 +20,7 @@ public abstract class Scheduler {
         this.contextSwitchTime = contextSwitchTime;
     }
     protected int addProcessesToQueue(Queue<Process> queue, int index, int currentTime) {
-        while (index < processes.size() && currentTime >= processes.get(index).getPropety("arrivalTime"))
+        while (index < processes.size() && currentTime >= processes.get(index).getProperty("arrivalTime"))
             queue.add(processes.get(index++));
         return index;
     }

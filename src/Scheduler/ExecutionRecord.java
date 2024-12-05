@@ -1,4 +1,4 @@
-package OSCourse.CPU;
+package OSCourse.CPU.Scheduler;
 
 public class ExecutionRecord {
     public int pid;

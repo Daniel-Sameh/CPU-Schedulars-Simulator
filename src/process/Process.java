@@ -1,48 +1,28 @@
-package process;
+package OSCourse.CPU.Process;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Comparator;
 
-public abstract class Process {
-    int pid;
-    private int priority;
-    private int arrivalTime;
-    private int burstTime;
-    private ArrayList<ArrayList<Integer>> runTimes;
-    public Process(int pid, int arrivalTime, int burstTime, int priority) {
-        this.pid = pid;
-        this.arrivalTime = arrivalTime;
-        this.burstTime = burstTime;
-        this.priority = priority;
-        this.runTimes = new ArrayList<>();
+public class Process {
+    HashMap<String, Integer> properties;
+    public Process(int id, int arrivalTime, int burstTime) {
+        properties = new HashMap<>();
+        setProperty("id", id);
+        setProperty("arrivalTime", arrivalTime);
+        setProperty("burstTime", burstTime);
     }
-    public int getPid() {
-        return pid;
+    public void setProperty(String name, Integer value) {
+        properties.put(name, value);
     }
-    public int getPriority() {
-        return priority;
+    public int getProperty(String name) {
+        return properties.get(name);
     }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public static Comparator<Process> getComparator() {
+        Comparator<Process> byArrivalTime = Comparator.comparingInt(p -> p.getProperty("arrivalTime"));
+        return byArrivalTime;
     }
-
-    public int getArrivalTime() {
-        return arrivalTime;
+    public static Comparator<Process> getComparator(String property) {
+        Comparator<Process> byProperty = Comparator.comparingInt(p -> p.getProperty(property));
+        return byProperty;
     }
-
-    public int getBurstTime() {
-        return burstTime;
-    }
-    public ArrayList<ArrayList<Integer>> getRunTimes() {
-        return runTimes;
-    }
-    protected void addRunTime(int startTime, int endTime){
-        ArrayList<Integer> runTime = new ArrayList<>();
-        runTime.add(startTime);
-        runTime.add(endTime);
-        runTimes.add(runTime);
-    }
-
-    public abstract void run(int startTime, int endTime);
-
 }
