@@ -198,7 +198,7 @@ public class GUI extends Application {
         arrivalColumn.setCellValueFactory(data -> data.getValue().arrivalTimeProperty());
         quantumColumn.setCellValueFactory(data -> data.getValue().quantumProperty());
         colorColumn.setCellValueFactory(cellData -> cellData.getValue().colorProperty());
-        colorColumn.setCellFactory(gees -> new TableCell<ProcessForm, Color>() {
+        colorColumn.setCellFactory(tmp -> new TableCell<ProcessForm, Color>() {
             @Override
             protected void updateItem(Color color, boolean empty) {
                 super.updateItem(color, empty);
@@ -216,7 +216,7 @@ public class GUI extends Application {
         yAxis.setLabel("PID");
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Geesing Simulation");
+        lineChart.setTitle("CPU Scheduling Simulation");
         lineChart.setMinHeight(300);
         lineChart.setLegendVisible(false);
     }
@@ -249,7 +249,7 @@ public class GUI extends Application {
 
         Scene scene = new Scene(root, 1100, 800);
         stage.setScene(scene);
-        stage.setTitle("GEESING");
+        stage.setTitle("CPU Scheduling Simulator");
 
     }
 
@@ -356,7 +356,7 @@ public class GUI extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
 
         final int[] timeIndex = {0,0};
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), gees -> {
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), tmp -> {
             if (timeIndex[0] > time) {
                 timeline.stop();
                 return;
