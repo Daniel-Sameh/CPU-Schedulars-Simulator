@@ -16,7 +16,6 @@ public class PriorityScheduler extends Scheduler {
         Collections.sort(processes, Process.getComparator());
         Comparator<Process> comparator = 
             Process.getComparator("priority")
-            .reversed()
             .thenComparing(Process.getComparator());
             
         PriorityQueue<Process> pq = new PriorityQueue<>(comparator);

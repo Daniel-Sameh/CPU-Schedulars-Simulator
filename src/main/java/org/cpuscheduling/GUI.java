@@ -137,6 +137,17 @@ public class GUI extends Application {
                 scheduler.addProcess(p);
             }
             execute(scheduler.run(), processes.size());
+            double totalTurnAroundTime = 0;
+            double totalWaitingTime = 0;
+            for (Process p: processes) {
+                totalTurnAroundTime += p.getTurnAroundTime();
+                totalWaitingTime += p.getWaitingTime();
+            };
+            double ATAT = totalTurnAroundTime / processes.size();
+            double AWT = totalWaitingTime / processes.size();
+
+            setATATFieldValue(ATAT + "");
+            setAWTFieldValue(AWT + "");
         });
 
         generateRandomColorButton.setOnAction(
@@ -247,7 +258,7 @@ public class GUI extends Application {
         root.setLeft(LeftBox);
         root.setCenter(lineChart);
 
-        Scene scene = new Scene(root, 1100, 800);
+        Scene scene = new Scene(root, 1200, 850);
         stage.setScene(scene);
         stage.setTitle("CPU Scheduling Simulator");
 

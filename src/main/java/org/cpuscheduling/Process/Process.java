@@ -26,6 +26,12 @@ public class Process {
         setProperty("remaining", getProperty("remaining") - runningTime);
         setProperty("lastExecutionTime", currentTimeAfterRunning);
     }
+    public int getTurnAroundTime(){
+        return getProperty("lastExecutionTime") - getProperty("arrivalTime");
+    }
+    public int getWaitingTime(){
+        return getTurnAroundTime() - getProperty("burstTime");
+    }
     public static Comparator<Process> getComparator() {
         Comparator<Process> byArrivalTime = Comparator.comparingInt(p -> p.getProperty("arrivalTime"));
         return byArrivalTime;
