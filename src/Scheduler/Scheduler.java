@@ -1,9 +1,9 @@
-package OSCourse.CPU.Scheduler;
+package Scheduler;
 
 import java.util.ArrayList;
 import java.util.Queue;
 
-import OSCourse.CPU.Process.Process;
+import Process.Process;
 
 public abstract class Scheduler {
     protected ArrayList<Process> processes;

@@ -1,8 +1,8 @@
-package OSCourse.CPU.Scheduler;
+package Scheduler;
 
 import java.util.PriorityQueue;
 
-import OSCourse.CPU.Process.Process;
+import Process.Process;
 
 import java.util.Collections;
 import java.util.Comparator;

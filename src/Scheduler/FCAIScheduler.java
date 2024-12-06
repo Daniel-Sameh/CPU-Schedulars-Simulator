@@ -1,4 +1,4 @@
-package OSCourse.CPU.Scheduler;
+package Scheduler;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
 
-import OSCourse.CPU.Process.Process;
+import Process.Process;
 
 public class FCAIScheduler extends Scheduler {
 

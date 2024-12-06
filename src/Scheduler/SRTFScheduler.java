@@ -1,14 +1,14 @@
-package OSCourse.CPU.Scheduler;
+package Scheduler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import OSCourse.CPU.Process.Process;
+import Process.Process;
 
 public class SRTFScheduler extends AgingScheduler {
-    SRTFScheduler(int contextSwitchTime, int agingTime) {
+    public SRTFScheduler(int contextSwitchTime, int agingTime) {
         super(contextSwitchTime, agingTime);
     }
     @Override
@@ -17,9 +17,10 @@ public class SRTFScheduler extends AgingScheduler {
         Collections.sort(processes, Process.getComparator());
         for (Process p: processes) {
             p.setProperty("remaining", p.getProperty("burstTime"));
+            p.setProperty("lastExecutionTime", p.getProperty("arrivalTime")); // To know the start of the process waiting time
         }
         Comparator<Process> comparator = 
-            Process.getComparator("priority")
+            Process.getComparator("priority").reversed()
             .thenComparing(Process.getComparator("remaining"))
             .thenComparing(Process.getComparator());
 
@@ -30,7 +31,7 @@ public class SRTFScheduler extends AgingScheduler {
         while (!pq.isEmpty()) {
             Process nextProcess = pq.poll();
             int runningTime = 0;
-            while (nextProcess.getProperty("remaining") > 0) {
+            while (nextProcess.getProperty("remaining") > 0) { //Simulating each second running of the process
                 currentTime++;
                 runningTime++;
                 nextProcess.setProperty("remaining", nextProcess.getProperty("remaining") - 1);
@@ -42,7 +43,10 @@ public class SRTFScheduler extends AgingScheduler {
                     break;
                 }
             }
-            records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - runningTime, runningTime));
+            if (runningTime > 0){
+                records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - runningTime, runningTime));
+            }
+            nextProcess.setProperty("lastExecutionTime", currentTime);
             currentTime += contextSwitchTime;
             if (pq.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");

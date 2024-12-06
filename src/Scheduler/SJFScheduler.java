@@ -1,11 +1,11 @@
-package OSCourse.CPU.Scheduler;
+package Scheduler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import OSCourse.CPU.Process.Process;
+import Process.Process;
 
 public class SJFScheduler extends AgingScheduler {
     protected int agingTime;
@@ -18,6 +18,7 @@ public class SJFScheduler extends AgingScheduler {
         Collections.sort(processes, Process.getComparator());
         for (Process p: processes) {
             p.setProperty("priority", 0);
+            p.setProperty("lastExecutionTime", p.getProperty("arrivalTime"));
         }
         Comparator<Process> comparator = 
             Process.getComparator("priority").reversed()

@@ -1,4 +1,4 @@
-package OSCourse.CPU.Process;
+package Process;
 
 import java.util.HashMap;
 import java.util.Comparator;
@@ -15,6 +15,9 @@ public class Process {
         properties.put(name, value);
     }
     public int getProperty(String name) {
+        if (!properties.containsKey(name)) {
+            return -1;
+        }
         return properties.get(name);
     }
     public static Comparator<Process> getComparator() {
