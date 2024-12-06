@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6ce2c18-4161-4612-9e8e-778e13aad178" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Process/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Process/Process.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/PriorityScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/PriorityScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Process/Process.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Process/Process.class" afterDir="false" />
-    </list>
+    <list default="true" id="e6ce2c18-4161-4612-9e8e-778e13aad178" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +34,6 @@
     "Application.GUI.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Code/GitHub/CPU-Schedulars-Simulator",
     "node.js.detected.package.eslint": "true",
@@ -94,6 +85,7 @@
       <updated>1733508844964</updated>
       <workItem from="1733508845976" duration="2479000" />
       <workItem from="1733512308419" duration="3104000" />
+      <workItem from="1733517713916" duration="552000" />
     </task>
     <servers />
   </component>

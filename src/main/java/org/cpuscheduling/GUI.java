@@ -36,11 +36,13 @@ public class GUI extends Application {
 
     private final List<XYChart.Series<Number, Number>> seriesList = new ArrayList<>();
     private HashMap<Integer, Color> colors = new HashMap<>() ;
-    private final int time = 30;
+    private final int time = 60;
     private final int maxProcesses = 10;
 
     private Timeline timeline;
     private LineChart<Number, Number> lineChart;
+    private ScrollPane lineChartScrollPane = new ScrollPane();
+
 
     private final VBox inputFieldsContainer = new VBox(10);;
     private final ComboBox<String> schedulerComboBox = new ComboBox<>();
@@ -136,7 +138,7 @@ public class GUI extends Application {
             for (Process p: processes) {
                 scheduler.addProcess(p);
             }
-            execute(scheduler.run(), processes.size());
+            execute(scheduler.run());
             double totalTurnAroundTime = 0;
             double totalWaitingTime = 0;
             for (Process p: processes) {
@@ -228,8 +230,14 @@ public class GUI extends Application {
 
         lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("CPU Scheduling Simulation");
-        lineChart.setMinHeight(300);
         lineChart.setLegendVisible(false);
+        lineChart.setAnimated(false);
+        lineChart.setPrefWidth(1500);
+
+        lineChartScrollPane.setContent(lineChart);
+        lineChartScrollPane.setFitToHeight(true);
+        lineChartScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        lineChartScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
     public void initStage(Stage stage){
         HBox colorBox = new HBox(10, generateRandomColorButton, colorPicker);
@@ -252,13 +260,12 @@ public class GUI extends Application {
         VBox LeftBox = new VBox(10, schedulerComboBox,  inputFieldsContainer, colorBox, addProcessButton, processTable, simulateButton, outputFields);
         LeftBox.setPadding(new Insets(0, 20, 0, 20));
         LeftBox.setAlignment(Pos.CENTER);
-        LeftBox.setPrefWidth(400);
+        LeftBox.setMinWidth(400);
 
-        BorderPane root = new BorderPane();
-        root.setLeft(LeftBox);
-        root.setCenter(lineChart);
+        HBox root = new HBox(10, LeftBox, lineChartScrollPane);
 
-        Scene scene = new Scene(root, 1200, 850);
+
+        Scene scene = new Scene(root, 1100, 750);
         stage.setScene(scene);
         stage.setTitle("CPU Scheduling Simulator");
 
@@ -350,7 +357,7 @@ public class GUI extends Application {
     public void setATATFieldValue(String value) {
         ATATField.setText(value);
     }
-    private void execute(List<ExecutionRecord> records, int n){
+    private void execute(List<ExecutionRecord> records){
         lineChart.getData().clear();
         seriesList.clear();
 
