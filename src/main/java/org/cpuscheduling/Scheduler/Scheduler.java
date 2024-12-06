@@ -1,9 +1,8 @@
-package Scheduler;
+package org.cpuscheduling.Scheduler;
 
 import java.util.ArrayList;
 import java.util.Queue;
-
-import Process.Process;
+import org.cpuscheduling.Process.Process;
 
 public abstract class Scheduler {
     protected ArrayList<Process> processes;
@@ -19,6 +18,8 @@ public abstract class Scheduler {
     public void setContextSwitchTime(int contextSwitchTime){
         this.contextSwitchTime = contextSwitchTime;
     }
+    public int getContextSwitchTime(){ return contextSwitchTime; }
+    public ArrayList<Process> getProcesses(){ return processes; }
     protected int addProcessesToQueue(Queue<Process> queue, int index, int currentTime) {
         while (index < processes.size() && currentTime >= processes.get(index).getProperty("arrivalTime"))
             queue.add(processes.get(index++));

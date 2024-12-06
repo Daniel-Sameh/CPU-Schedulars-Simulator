@@ -1,8 +1,8 @@
-package Scheduler;
+package org.cpuscheduling.Scheduler;
 
 import java.util.PriorityQueue;
 
-import Process.Process;
+import org.cpuscheduling.Process.Process;
 
 public abstract class AgingScheduler extends Scheduler {
     int agingTime;

@@ -1,4 +1,4 @@
-package Scheduler;
+package org.cpuscheduling.Scheduler;
 
 public class ExecutionRecord {
     public int pid;

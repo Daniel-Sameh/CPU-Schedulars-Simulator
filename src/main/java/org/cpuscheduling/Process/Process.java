@@ -1,4 +1,4 @@
-package Process;
+package org.cpuscheduling.Process;
 
 import java.util.HashMap;
 import java.util.Comparator;
@@ -10,6 +10,8 @@ public class Process {
         setProperty("id", id);
         setProperty("arrivalTime", arrivalTime);
         setProperty("burstTime", burstTime);
+        setProperty("remaining", burstTime);
+        setProperty("lastExecutionTime", arrivalTime);
     }
     public void setProperty(String name, Integer value) {
         properties.put(name, value);
@@ -19,6 +21,10 @@ public class Process {
             return -1;
         }
         return properties.get(name);
+    }
+    public void execute(int currentTimeAfterRunning, int runningTime) {
+        setProperty("remaining", getProperty("remaining") - runningTime);
+        setProperty("lastExecutionTime", currentTimeAfterRunning);
     }
     public static Comparator<Process> getComparator() {
         Comparator<Process> byArrivalTime = Comparator.comparingInt(p -> p.getProperty("arrivalTime"));
