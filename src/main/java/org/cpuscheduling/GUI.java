@@ -149,12 +149,12 @@ public class GUI extends Application {
                 scheduler.addProcess(p);
             }
             ArrayList<ExecutionRecord> records = scheduler.run();
-            for (ExecutionRecord r: records) {
-                System.out.println("PID: " + r.processIndex);
-                System.out.println("StartTime: " + r.startTime);
-                System.out.println("Running Time: " + r.runningTime);
-                System.out.println("=======================================");
-            }
+//            for (ExecutionRecord r: records) {
+//                System.out.println("PID: " + r.processIndex);
+//                System.out.println("StartTime: " + r.startTime);
+//                System.out.println("Running Time: " + r.runningTime);
+//                System.out.println("=======================================");
+//            }
             execute(records);
             double totalTurnAroundTime = 0;
             double totalWaitingTime = 0;
@@ -164,6 +164,10 @@ public class GUI extends Application {
             };
             double ATAT = totalTurnAroundTime / processes.size();
             double AWT = totalWaitingTime / processes.size();
+
+            System.out.println("Average Total TurnAround Time = "+ ATAT);
+            System.out.println("Average Total Waiting Time = "+ AWT);
+            System.out.println("-------------------------------------------");
 
             setATATFieldValue(ATAT + "");
             setAWTFieldValue(AWT + "");
@@ -273,12 +277,14 @@ public class GUI extends Application {
         label.setFont(Font.font("Arial", FontWeight.BOLD, 13));
         HBox AWTBox = new HBox(10, label, AWTField);
         AWTBox.setAlignment(Pos.CENTER);
+        AWTBox.setPadding(new Insets(10, 0, 0, 0));
 
         Label label1 = new Label("ATAT");
         label1.setMinWidth(60);
         label1.setFont(Font.font("Arial", FontWeight.BOLD, 13));
         HBox ATATBox = new HBox(10, label1, ATATField);
         ATATBox.setAlignment(Pos.CENTER);
+        ATATBox.setPadding(new Insets(0, 0, 20, 0));
 
         VBox outputFields = new VBox(10, AWTBox, ATATBox);
 
@@ -291,7 +297,7 @@ public class GUI extends Application {
         HBox agingBox = new HBox(10, agingLabel, agingTimeField);
 
         VBox LeftBox = new VBox(10, schedulerComboBox,  inputFieldsContainer, colorBox, addProcessButton, processTable, contextBox, agingBox, simulateButton, outputFields);
-        LeftBox.setPadding(new Insets(0, 20, 0, 20));
+        LeftBox.setPadding(new Insets(10, 20, 0, 20));
         LeftBox.setAlignment(Pos.CENTER);
         LeftBox.setMinWidth(400);
 

@@ -16,6 +16,8 @@ public class FCAIScheduler extends Scheduler {
 
     @Override
     public ArrayList<ExecutionRecord> run() {
+        System.out.println("FCAI Scheduler running...");
+        System.out.println("Results: ");
         ArrayList<ExecutionRecord> records = new ArrayList<>(); 
         Collections.sort(processes, Process.getComparator());
 
@@ -67,6 +69,10 @@ public class FCAIScheduler extends Scheduler {
                 index = addProcessesToQueue(queue, 0, currentTime);
             }
         }
+        for (Process p: processes) {
+            System.out.println("Process#"+p.getProperty("id")+" Waiting Time= "+ p.getWaitingTime()+ ", TurnAround Time= "+p.getTurnAroundTime());
+        }
+        System.out.println("-------------------------------------------");
         return records;
     }
     int calculateFCAIFactor(Process process, double v1, double v2) {

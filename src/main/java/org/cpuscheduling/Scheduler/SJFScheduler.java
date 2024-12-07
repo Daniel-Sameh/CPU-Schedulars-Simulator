@@ -13,8 +13,12 @@ public class SJFScheduler extends AgingScheduler {
     }
     @Override
     public ArrayList<ExecutionRecord> run() {
+        System.out.println("SJF Scheduler running...");
+        System.out.println("Results: ");
+
         ArrayList<ExecutionRecord> records = new ArrayList<>(); 
         Collections.sort(processes, Process.getComparator());
+        ArrayList<Process> printProcesses = new ArrayList<>(processes);
         for (Process p: processes) {
             p.setProperty("priority", 0);
         }
@@ -45,6 +49,10 @@ public class SJFScheduler extends AgingScheduler {
                 index = addProcessesToQueue(pq, 0, currentTime);
             }
         }
+        for (Process p: printProcesses) {
+            System.out.println("Process#"+p.getProperty("id")+" Waiting Time= "+ p.getWaitingTime()+ ", TurnAround Time= "+p.getTurnAroundTime());
+        }
+        System.out.println("-------------------------------------------");
         return records;
     }
 }

@@ -12,6 +12,8 @@ public class SRTFScheduler extends AgingScheduler {
     }
     @Override
     public ArrayList<ExecutionRecord> run() {
+        System.out.println("SRTF Scheduler running...");
+        System.out.println("Results: ");
         ArrayList<ExecutionRecord> records = new ArrayList<>(); 
         Collections.sort(processes, Process.getComparator());
 
@@ -53,6 +55,10 @@ public class SRTFScheduler extends AgingScheduler {
                 index = addProcessesToQueue(pq, 0, currentTime);
             }
         }
+        for (Process p: processes) {
+            System.out.println("Processs#"+p.getProperty("id")+" Waiting Time= "+ p.getWaitingTime()+ ", TurnAround Time= "+p.getTurnAroundTime());
+        }
+        System.out.println("-------------------------------------------");
         return records;
     }
 }

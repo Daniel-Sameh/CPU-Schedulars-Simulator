@@ -12,6 +12,8 @@ public class PriorityScheduler extends Scheduler {
     }
     @Override
     public ArrayList<ExecutionRecord> run() {
+        System.out.println("Priority Scheduler running...");
+        System.out.println("Results: ");
         ArrayList<ExecutionRecord> records = new ArrayList<>(); 
         Collections.sort(processes, Process.getComparator());
         Comparator<Process> comparator = 
@@ -37,7 +39,9 @@ public class PriorityScheduler extends Scheduler {
                 currentTime = processes.get(index).getProperty("arrivalTime");
                 index = addProcessesToQueue(pq, 0, currentTime);
             }
+            System.out.println("Process#"+nextProcess.getProperty("id")+" Waiting Time= "+ nextProcess.getWaitingTime()+ ", TurnAround Time= "+nextProcess.getTurnAroundTime());
         }
+        System.out.println("-------------------------------------------");
         return records;
     }
 }
