@@ -31,8 +31,9 @@ import java.util.*;
 
 public class GUI extends Application {
 
-    private final int contextSwitchTime = 2;
-    private final int agingTime = 5;
+    private int contextSwitchTime = 2;
+    private int agingTime = 5;
+    private int PROCESS_INDEX = 1;
 
     private final List<XYChart.Series<Number, Number>> seriesList = new ArrayList<>();
     private HashMap<Integer, Color> colors = new HashMap<>() ;
@@ -53,6 +54,8 @@ public class GUI extends Application {
     private final TextField quantumField = new TextField();;
     private final ColorPicker colorPicker = new ColorPicker(); ;
     private final Button generateRandomColorButton = new Button("Randomize");
+    private final TextField contextSwitchTimeField = new TextField();
+    private final TextField agingTimeField = new TextField();
 
     Button addProcessButton = new Button("Add Process");
 
@@ -120,6 +123,13 @@ public class GUI extends Application {
 
 
         simulateButton.setOnAction(tmp -> {
+            if (!contextSwitchTimeField.getText().equals("")){
+                contextSwitchTime = Integer.parseInt(contextSwitchTimeField.getText());
+            }
+            if (!agingTimeField.getText().equals("")){
+                agingTime = Integer.parseInt(agingTimeField.getText());
+            }
+
             ArrayList<Process> processes = getProcesses();
             Scheduler scheduler = null;
             switch (schedulerComboBox.getValue()) {
@@ -138,7 +148,14 @@ public class GUI extends Application {
             for (Process p: processes) {
                 scheduler.addProcess(p);
             }
-            execute(scheduler.run());
+            ArrayList<ExecutionRecord> records = scheduler.run();
+            for (ExecutionRecord r: records) {
+                System.out.println("PID: " + r.processIndex);
+                System.out.println("StartTime: " + r.startTime);
+                System.out.println("Running Time: " + r.runningTime);
+                System.out.println("=======================================");
+            }
+            execute(records);
             double totalTurnAroundTime = 0;
             double totalWaitingTime = 0;
             for (Process p: processes) {
@@ -161,6 +178,11 @@ public class GUI extends Application {
         addProcessButton.setOnAction(tmp -> addProcess() );
 
         schedulerComboBox.setOnAction(tmp -> {
+            PROCESS_INDEX = 1;
+            if (timeline != null && timeline.getStatus() == Timeline.Status.RUNNING)
+                timeline.stop();
+            lineChart.getData().clear();
+            seriesList.clear();
             updateInputFields(schedulerComboBox.getValue());
             updateTable(schedulerComboBox.getValue());
             colors.clear();
@@ -196,6 +218,9 @@ public class GUI extends Application {
         priorityField.setPromptText("Priority");
         arrivalTimeField.setPromptText("Arrival Time");
         quantumField.setPromptText("Quantum");
+        contextSwitchTimeField.setPromptText("Context Switch Time");
+        agingTimeField.setPromptText("Aging Time");
+
         AWTField.setEditable(false);
         ATATField.setEditable(false);
 
@@ -226,10 +251,10 @@ public class GUI extends Application {
         NumberAxis xAxis = new NumberAxis(0, time, 1);
         xAxis.setLabel("Time");
         NumberAxis yAxis = new NumberAxis(0, maxProcesses, 1);
-        yAxis.setLabel("PID");
+        yAxis.setLabel("Process Index");
 
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("CPU Scheduling Simulation");
+        lineChart.setTitle("");
         lineChart.setLegendVisible(false);
         lineChart.setAnimated(false);
         lineChart.setPrefWidth(1500);
@@ -257,7 +282,15 @@ public class GUI extends Application {
 
         VBox outputFields = new VBox(10, AWTBox, ATATBox);
 
-        VBox LeftBox = new VBox(10, schedulerComboBox,  inputFieldsContainer, colorBox, addProcessButton, processTable, simulateButton, outputFields);
+        Label contextLabel = new Label("Context Switching Time: ");
+        contextLabel.setMinWidth(150);
+        HBox contextBox = new HBox(10, contextLabel, contextSwitchTimeField);
+
+        Label agingLabel = new Label("Aging Time: ");
+        agingLabel.setMinWidth(150);
+        HBox agingBox = new HBox(10, agingLabel, agingTimeField);
+
+        VBox LeftBox = new VBox(10, schedulerComboBox,  inputFieldsContainer, colorBox, addProcessButton, processTable, contextBox, agingBox, simulateButton, outputFields);
         LeftBox.setPadding(new Insets(0, 20, 0, 20));
         LeftBox.setAlignment(Pos.CENTER);
         LeftBox.setMinWidth(400);
@@ -319,7 +352,7 @@ public class GUI extends Application {
             Integer quantum = (isFcai ? Integer.parseInt(quantumField.getText()) : -1);
 
             Color color = colorPicker.getValue();
-            colors.put(processId, color);
+            colors.put(PROCESS_INDEX++, color);
 
             ProcessForm newProcessForm = new ProcessForm(processId, priority, burstTime, arrivalTime, quantum, color);
             processTable.getItems().add(newProcessForm);
@@ -339,6 +372,7 @@ public class GUI extends Application {
         ObservableList<ProcessForm> allProcessForms = processTable.getItems();
 
         ArrayList<Process> processes = new ArrayList<>();
+        int index = 1;
         for (ProcessForm form : allProcessForms) {
             Process current = new Process(form.processId.get(), form.arrivalTime.get(), form.burstTime.get());
             if (form.priority.get() != -1) {
@@ -347,6 +381,7 @@ public class GUI extends Application {
             if (form.quantum.get() != -1) {
                 current.setProperty("quantum", form.quantum.get());
             }
+            current.setProperty("index", index++);
             processes.add(current);
         }
         return processes;
@@ -374,7 +409,7 @@ public class GUI extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
 
         final int[] timeIndex = {0,0};
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), tmp -> {
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), tmp -> {
             if (timeIndex[0] > time) {
                 timeline.stop();
                 return;
@@ -382,10 +417,10 @@ public class GUI extends Application {
             if (timeIndex[1] < records.size()) {
                 ExecutionRecord record = records.get(timeIndex[1]);
                 if (timeIndex[0] >= record.startTime) {
-                    Color color = colors.get(record.pid);
+                    Color color = colors.get(record.processIndex);
                     XYChart.Series<Number, Number> series = seriesList.get(timeIndex[1]);
                     series.getNode().setStyle("-fx-stroke: " + toRgbString(color) + ";");
-                    XYChart.Data<Number, Number> data = new XYChart.Data<>(timeIndex[0], record.pid);
+                    XYChart.Data<Number, Number> data = new XYChart.Data<>(timeIndex[0], record.processIndex);
                     series.getData().add(data);
                     data.getNode().setStyle("-fx-background-color: " + toRgbString(color) + ";");
                 }

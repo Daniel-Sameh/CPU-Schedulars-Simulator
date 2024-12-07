@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6ce2c18-4161-4612-9e8e-778e13aad178" name="Changes" comment="" />
+    <list default="true" id="e6ce2c18-4161-4612-9e8e-778e13aad178" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/AgingScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/AgingScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/ExecutionRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/ExecutionRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/FCAIScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/FCAIScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/PriorityScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/PriorityScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SJFScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SJFScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SRTFScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SRTFScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$ProcessForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI$ProcessForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/AgingScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/AgingScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/ExecutionRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/ExecutionRecord.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/FCAIScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/FCAIScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/PriorityScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/PriorityScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/SJFScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/SJFScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/SRTFScheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/SRTFScheduler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/cpuscheduling/Scheduler/Scheduler.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +42,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -34,6 +59,7 @@
     "Application.GUI.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Code/GitHub/CPU-Schedulars-Simulator",
     "node.js.detected.package.eslint": "true",
@@ -86,10 +112,27 @@
       <workItem from="1733508845976" duration="2479000" />
       <workItem from="1733512308419" duration="3104000" />
       <workItem from="1733517713916" duration="552000" />
+      <workItem from="1733527417173" duration="1951000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SRTFScheduler.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/cpuscheduling/Scheduler/SJFScheduler.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

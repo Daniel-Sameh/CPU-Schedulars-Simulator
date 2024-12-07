@@ -15,6 +15,10 @@ public class SRTFScheduler extends AgingScheduler {
         ArrayList<ExecutionRecord> records = new ArrayList<>(); 
         Collections.sort(processes, Process.getComparator());
 
+        for (Process p: processes) {
+            p.setProperty("priority", 0);
+        }
+
         Comparator<Process> comparator = 
             Process.getComparator("priority")
             .reversed()
@@ -36,12 +40,13 @@ public class SRTFScheduler extends AgingScheduler {
                 index = addProcessesToQueue(pq, index, currentTime);
                 pq = age(pq, currentTime);
 
-                if (!pq.isEmpty() && comparator.compare(pq.peek(), nextProcess) < 0) {
+                if (nextProcess.getProperty("remaining") > 0 && !pq.isEmpty() && comparator.compare(pq.peek(), nextProcess) < 0) {
                     pq.add(nextProcess);
                     break;
                 }
             }
-            records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - runningTime, runningTime));
+
+            addRecord(records, nextProcess, currentTime, runningTime);
             currentTime += contextSwitchTime;
             if (pq.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");

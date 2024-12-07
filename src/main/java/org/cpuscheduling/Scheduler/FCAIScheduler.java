@@ -61,11 +61,7 @@ public class FCAIScheduler extends Scheduler {
                 queue.add(nextProcess);
             }
 
-            if (!records.isEmpty() && records.getLast().pid == nextProcess.getProperty("id")){
-                runningTime += records.getLast().runningTime;
-                records.removeLast();
-            }
-            records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - runningTime, runningTime));
+            addRecord(records, nextProcess, currentTime, runningTime);
             if (queue.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");
                 index = addProcessesToQueue(queue, 0, currentTime);

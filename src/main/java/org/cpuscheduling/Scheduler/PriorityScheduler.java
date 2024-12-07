@@ -30,8 +30,8 @@ public class PriorityScheduler extends Scheduler {
 
             nextProcess.execute(currentTime, burstTime);
             index = addProcessesToQueue(pq, index, currentTime);
-            
-            records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - burstTime, burstTime));
+
+            addRecord(records, nextProcess, currentTime, burstTime);
             currentTime += contextSwitchTime;
             if (pq.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");

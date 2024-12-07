@@ -38,7 +38,7 @@ public class SJFScheduler extends AgingScheduler {
             index = addProcessesToQueue(pq, index, currentTime);
             pq = age(pq, currentTime);
 
-            records.add(new ExecutionRecord(nextProcess.getProperty("id"), currentTime - burstTime, burstTime));
+            addRecord(records, nextProcess, currentTime, burstTime);
             currentTime += contextSwitchTime;
             if (pq.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");

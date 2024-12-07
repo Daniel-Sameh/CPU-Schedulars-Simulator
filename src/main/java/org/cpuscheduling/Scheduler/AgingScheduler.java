@@ -12,9 +12,10 @@ public abstract class AgingScheduler extends Scheduler {
     }
     protected PriorityQueue<Process> age(PriorityQueue<Process> queue, int currentTime) {
         PriorityQueue<Process> newQueue = new PriorityQueue<>(queue.comparator());
-        for (Process p: processes) {
-            if (currentTime>= p.getProperty("arrivalTime")){
-                if ((currentTime - p.getProperty("lastExecutionTime")) % agingTime == 0) {
+        for (Process p: queue) {
+            if (currentTime>= p.getProperty("lastExecutionTime")){
+                int diff = currentTime - p.getProperty("lastExecutionTime");
+                if (diff > 0 && (diff) % agingTime == 0) {
                     p.setProperty("priority", p.getProperty("priority") + 1);
                 }
                 newQueue.add(p);

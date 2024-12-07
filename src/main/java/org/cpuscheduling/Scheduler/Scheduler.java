@@ -25,4 +25,11 @@ public abstract class Scheduler {
             queue.add(processes.get(index++));
         return index;
     }
+    protected void addRecord(ArrayList<ExecutionRecord> records, Process process, int currentTime, int runningTime) {
+        if (!records.isEmpty() && records.getLast().processIndex == process.getProperty("index")){
+            runningTime += records.getLast().runningTime;
+            records.removeLast();
+        }
+        records.add(new ExecutionRecord(process.getProperty("index"), currentTime - runningTime, runningTime));
+    }
 }
