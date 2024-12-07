@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -149,12 +150,15 @@ public class GUI extends Application {
                 scheduler.addProcess(p);
             }
             ArrayList<ExecutionRecord> records = scheduler.run();
-//            for (ExecutionRecord r: records) {
-//                System.out.println("PID: " + r.processIndex);
-//                System.out.println("StartTime: " + r.startTime);
-//                System.out.println("Running Time: " + r.runningTime);
-//                System.out.println("=======================================");
-//            }
+            for (ExecutionRecord r: records) {
+                System.out.println("PID: " + r.processIndex);
+                System.out.println("StartTime: " + r.startTime);
+                System.out.println("Running Time: " + r.runningTime);
+                if (r.quantum != -1){
+                    System.out.println("Quantum: " + r.quantum);
+                }
+                System.out.println("=======================================");
+            }
             execute(records);
             double totalTurnAroundTime = 0;
             double totalWaitingTime = 0;
@@ -269,6 +273,9 @@ public class GUI extends Application {
         lineChartScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
     public void initStage(Stage stage){
+        Image icon = new Image(getClass().getResourceAsStream("/org/cpuscheduling/cpuIcon.png"));
+        stage.getIcons().add(icon);
+
         HBox colorBox = new HBox(10, generateRandomColorButton, colorPicker);
         colorBox.setAlignment(Pos.CENTER);
 

@@ -64,6 +64,7 @@ public class FCAIScheduler extends Scheduler {
             }
 
             addRecord(records, nextProcess, currentTime, runningTime);
+            records.get(records.size()-1).quantum = nextProcess.getProperty("quantum");
             if (queue.isEmpty() && index < processes.size()) {
                 currentTime = processes.get(index).getProperty("arrivalTime");
                 index = addProcessesToQueue(queue, 0, currentTime);
